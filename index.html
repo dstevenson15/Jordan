@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Air Elite Heritage™</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --gold: #d4af37;
+  --red: #8b0000;
+  --black: #050505;
+}
+
+body {
+  margin:0;
+  font-family:'Inter',sans-serif;
+  background:linear-gradient(180deg,#000,#111);
+  color:white;
+}
+
+/* HEADER */
+header {
+  padding:25px 50px;
+  display:flex;
+  justify-content:space-between;
+  border-bottom:1px solid #222;
+}
+
+.logo {
+  font-family:'Playfair Display',serif;
+  font-size:32px;
+  letter-spacing:2px;
+  color:var(--gold);
+}
+
+/* HERO */
+.hero {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:50px;
+  padding:80px;
+  align-items:center;
+}
+
+.hero img {
+  width:100%;
+  border-radius:14px;
+  box-shadow:0 0 40px rgba(212,175,55,0.2);
+}
+
+.title {
+  font-family:'Playfair Display',serif;
+  font-size:56px;
+  line-height:1.1;
+}
+
+.price {
+  font-size:36px;
+  margin:25px 0;
+}
+
+.old {
+  text-decoration:line-through;
+  color:#777;
+  margin-right:10px;
+}
+
+/* BUTTONS */
+button {
+  padding:18px 30px;
+  font-size:18px;
+  border:none;
+  cursor:pointer;
+  margin-right:10px;
+  transition:0.3s;
+}
+
+.primary {
+  background:linear-gradient(45deg,var(--gold),#fff2b0);
+  color:black;
+  box-shadow:0 0 20px rgba(212,175,55,0.6);
+}
+
+.primary:hover {
+  transform:scale(1.05);
+}
+
+.secondary {
+  background:transparent;
+  border:1px solid var(--gold);
+  color:var(--gold);
+}
+
+/* SHIMMER EFFECT */
+.shimmer {
+  background:linear-gradient(90deg,#000 25%,#333 50%,#000 75%);
+  background-size:200% 100%;
+  animation:shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% {background-position:200% 0;}
+  100% {background-position:-200% 0;}
+}
+
+/* POPUPS */
+.popup {
+  position:fixed;
+  bottom:20px;
+  left:20px;
+  background:#111;
+  border:1px solid #333;
+  padding:15px 20px;
+  border-radius:10px;
+  font-size:14px;
+  animation:fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+  from {opacity:0; transform:translateY(20px);}
+  to {opacity:1; transform:translateY(0);}
+}
+
+/* FEATURES */
+.features {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:25px;
+  padding:60px;
+}
+
+.card {
+  background:#111;
+  padding:25px;
+  border-radius:12px;
+  font-size:18px;
+  border:1px solid #222;
+}
+
+/* MOBILE */
+@media(max-width:800px){
+  .hero {grid-template-columns:1fr; padding:40px;}
+  .features {grid-template-columns:1fr;}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">AIR ELITE HERITAGE™</div>
+  <div>Luxury Athletic Collectibles</div>
+</header>
+
+<section class="hero">
+
+  <!-- Lookalike / silhouette image -->
+  <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc" alt="Basketball Player #23">
+
+  <div>
+    <div class="title shimmer">Signed #23 Legacy Jerseys</div>
+    <p style="font-size:20px; color:#ccc;">
+      Chicago-era greatness… reimagined.
+    </p>
+
+    <div class="price">
+      <span class="old">$4,999.99</span> $29.99
+    </div>
+
+    <button class="primary" onclick="fakeBuy()">ADD TO CART</button>
+    <button class="secondary" onclick="shareSMS()">📱 Text Friends</button>
+
+    <p style="margin-top:20px;color:#888;">
+      *Parody collectible. Not affiliated with any actual player.*
+    </p>
+  </div>
+
+</section>
+
+<section class="features">
+  <div class="card">“Signature” included (ink may still be drying)</div>
+  <div class="card">Premium athletic-inspired fabric</div>
+  <div class="card">Luxury collector packaging experience</div>
+</section>
+
+<!-- POPUP SCRIPT -->
+<script>
+const names = ["Jake (NY)", "Ashley (CA)", "Marcus (TX)", "Tyler (FL)", "Chris (IL)"];
+
+function showPopup(){
+  const popup = document.createElement("div");
+  popup.className="popup";
+  popup.innerText = names[Math.floor(Math.random()*names.length)] + " just bought 2 jerseys!";
+  document.body.appendChild(popup);
+
+  setTimeout(()=>popup.remove(),4000);
+}
+
+setInterval(showPopup,5000);
+
+function fakeBuy(){
+  alert("Added to cart. Authenticity not guaranteed 😄");
+}
+
+function shareSMS(){
+  const msg = encodeURIComponent("😂 This luxury jersey site is wild: " + window.location.href);
+  window.location.href = "sms:?body=" + msg;
+}
+</script>
+
+</body>
+</html>
